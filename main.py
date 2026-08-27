@@ -16,7 +16,6 @@ from aiogram.fsm.state import State, StatesGroup
 # ==========================================
 # 1. КОНФИГУРАЦИЯ СТАРТАПА
 # ==========================================
-# Токен теперь берется БЕЗОПАСНО, из скрытых настроек Render!
 TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN") 
 ADMIN_ID = 6400374873           
 DB_NAME = "basket_startup.db"
