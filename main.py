@@ -926,12 +926,10 @@ async def main() -> None:
             await db_pool.close()
 
 # Этот код нужно вставить в самом конце списка обработчиков (handlers)
-@dp.message(F.text) # Если у тебя используется router, то @router.message(F.text)
-async def handle_any_text(message: types.Message):
-    # Здесь мы вызываем ту же функцию, что и при команде /start.
-    # Посмотри в коде выше, как называется твоя функция для /start, 
-    # обычно это cmd_start(message) или что-то подобное.
-    await cmd_start(message) 
+@dp.message(F.text) 
+async def handle_any_text(message: types.Message, state: FSMContext):
+    await cmd_start(message, state)
+
 if __name__ == "__main__":
     try:
         asyncio.run(main())
