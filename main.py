@@ -928,15 +928,8 @@ async def main() -> None:
 # Этот код нужно вставить в самом конце списка обработчиков (handlers)
 @dp.message(F.text) 
 async def handle_any_text(message: types.Message, state: FSMContext):
-    # Очищаем состояние на всякий случай, как при старте
-    await state.clear()
-    
-    # Отправляем теплое приветствие вместе с главным меню
-    await message.answer(
-        f"Привет, <b>{escape(message.from_user.first_name)}</b>! 🏀 Рад на связи.\nВыбирай нужный раздел тренировок или план на сегодня:",
-        reply_markup=kb_main_menu(),
-        parse_mode="HTML"
-    )
+    await cmd_start(message, state)
+
 
 
 if __name__ == "__main__":
