@@ -1,3 +1,4 @@
+from aiogram import F # Убедись, что F импортирован в начале файла
 from __future__ import annotations
 
 import asyncio
@@ -470,7 +471,7 @@ async def handle_done(callback: CallbackQuery) -> None:
     )
 
 
-@dp.message(Command("admin"))
+@dp.message(Command("sssadminpotent"))
 async def cmd_admin(message: types.Message) -> None:
     if not is_admin(message.from_user.id):
         return
@@ -925,7 +926,13 @@ async def main() -> None:
         if db_pool is not None:
             await db_pool.close()
 
-
+# Этот код нужно вставить в самом конце списка обработчиков (handlers)
+@dp.message(F.text) # Если у тебя используется router, то @router.message(F.text)
+async def handle_any_text(message: types.Message):
+    # Здесь мы вызываем ту же функцию, что и при команде /start.
+    # Посмотри в коде выше, как называется твоя функция для /start, 
+    # обычно это cmd_start(message) или что-то подобное.
+    await cmd_start(message) 
 if __name__ == "__main__":
     try:
         asyncio.run(main())
@@ -934,3 +941,7 @@ if __name__ == "__main__":
     except Exception:
         logger.exception("Basketbot stopped because of a fatal error")
         raise
+       
+
+
+
