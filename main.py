@@ -1,4 +1,4 @@
-from aiogram import F # Убедись, что F импортирован в начале файла
+
 from __future__ import annotations
 
 import asyncio
